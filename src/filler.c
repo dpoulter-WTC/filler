@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/11 17:29:37 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:36:54 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	initiate(t_map *map, t_piece *piece)
 	map->map_y = 0;
 	map->player = 0;
 	piece->piece = NULL;
-	piece->piece_x = 0;
+	piece->piece_x = 1;
 	piece->piece_y = 0;
 	map->pos = NULL;
 	map->pos_num = 0;
@@ -27,19 +27,15 @@ void	initiate(t_map *map, t_piece *piece)
 	map->en = 'a';
 }
 
-void	first_time(t_map *map, t_piece *piece, int f)
+void	first_time(t_map *map, t_piece *piece)
 {
 	char	*line;
 	char	*digit;
-	int		j;
 	int		i;
-		
-	j = 1;
+
 	i = 0;
-	line = ft_strnew(10000);
 	digit = ft_strnew(10000);
-	piece->piece_x = 1;
-	while(i < piece->piece_x)
+	while (i < piece->piece_x)
 	{
 		ft_gnl(0, &line);
 		if (ft_strcmp(line, "$$$ exec p1 : [players/dpoulter.filler]") == 0)
@@ -49,42 +45,37 @@ void	first_time(t_map *map, t_piece *piece, int f)
 		if (line[0] == 'P' && line[1] == 'l')
 			set_size(map, piece, line);
 		if (ft_isdigit(line[0]) == 1)
-			map_set(map, piece, line, f);
+			map_set(map, piece, line);
 		if (line[0] == 'P' && line[1] == 'i')
 			set_size_piece(map, piece, line);
-		if (line[0] == '*' || line [0] == '.')
-		{
-			piece_set(map, piece, line, i, f);
-			i++;
-		}
+		if (line[0] == '*' || line[0] == '.')
+			piece_set(map, piece, line, i++);
 		ft_strdel(&line);
 	}
 	free(digit);
 	free(line);
 }
 
-void	else_time(t_map *map, t_piece *piece, int f)
+void	else_time(t_map *map, t_piece *piece)
 {
 	char	*line;
 	char	*digit;
-	int		j;
 	int		i;
-		
-	j = 1;
+
 	i = 0;
 	line = ft_strnew(10000);
 	digit = ft_strnew(10000);
 	piece->piece_x = 1;
-	while(i < piece->piece_x)
+	while (i < piece->piece_x)
 	{
 		ft_gnl(0, &line);
 		if (line[0] == 'P' && line[1] == 'i')
 			set_size_piece(map, piece, line);
 		if (ft_isdigit(line[0]) == 1)
-			map_set(map, piece, line, f);
-		if ((line[0] == '*' || line [0] == '.') && piece->piece_x != 0)
+			map_set(map, piece, line);
+		if ((line[0] == '*' || line[0] == '.') && piece->piece_x != 0)
 		{
-			piece_set(map, piece, line, i, f);
+			piece_set(map, piece, line, i);
 			i++;
 		}
 		ft_strdel(&line);
@@ -93,19 +84,9 @@ void	else_time(t_map *map, t_piece *piece, int f)
 	free(line);
 }
 
-int		main(void)
+void	player(t_map *map)
 {
-	t_map	*map;
-	t_piece	*piece;
-	char	*line;
-	int i;
-
-	map = (t_map *)malloc(sizeof(*map));
-	piece = (t_piece *)malloc(sizeof(*piece));
-	initiate(map, piece);
-	int f = open("output.txt", O_RDONLY | O_WRONLY | O_TRUNC);
-	first_time(map, piece, f);
-	if(map->player == 1)
+	if (map->player == 1)
 	{
 		map->me = 'O';
 		map->en = 'X';
@@ -115,21 +96,31 @@ int		main(void)
 		map->me = 'X';
 		map->en = 'O';
 	}
+}
+
+int		main(void)
+{
+	t_map	*map;
+	t_piece	*piece;
+	char	*line;
+	int		i;
+
+	map = (t_map *)malloc(sizeof(*map));
+	piece = (t_piece *)malloc(sizeof(*piece));
+	initiate(map, piece);
+	first_time(map, piece);
+	player(map);
 	malloc_place(map, piece);
 	map->pos_num = 0;
-	while(1)
+	while (1)
 	{
 		i = -1;
-		/*while(++i < map->pos_num)
+		else_time(map, piece);
+		if (malloc_place(map, piece))
 		{
-			ft_putnbr_fd(map->pos[i][0], f);
-			ft_putchar_fd(' ', f);
-			ft_putnbr_fd(map->pos[i][1], f);
-			ft_putchar_fd('\n', f);
-		}*/
-		else_time(map, piece, f);
-		if(malloc_place(map, piece))
-			break;
+			freeing(map, piece);
+			break ;
+		}
 		map->pos_num = 0;
 	}
 	return (0);

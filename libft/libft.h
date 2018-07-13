@@ -6,7 +6,7 @@
 /*   By: dpoulter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 11:06:49 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/11 12:09:44 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:12:35 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 # ifndef IS_SPACE
 #  define IS_SPACE(x) (x==' '||x=='\n'||x=='\t')
@@ -24,7 +24,6 @@
 
 # define BUFF_SIZE 34
 
-# define MALLCHECK(x) if (!x) return (-1);
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -98,6 +97,4 @@ int				ft_isupper(int c);
 char			*ft_strndup(const char *s1, size_t n);
 int				ft_countwords(char const *str, char c);
 int				ft_gnl(const int fd, char **line);
-int				ft_copyuntil(char **dst, char *src, char c);
-char			*ft_strjoinch(char const *s1, char c);
 #endif

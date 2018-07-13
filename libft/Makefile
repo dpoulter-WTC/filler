@@ -64,8 +64,6 @@ SRC		= ft_memset.c \
 				ft_lstiter.c \
 				ft_lstmap.c \
 				ft_gnl.c \
-				ft_copyuntil.c \
-				ft_strjoinch.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -74,7 +72,7 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) :  $(OBJ)
-	@echo "Hello"
+	@echo "Libft Done"
 	@gcc $(CFLAGS) -c $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)

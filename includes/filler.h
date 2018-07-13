@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:12:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/12 12:40:34 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:35:53 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef	struct	s_piece
 	char		**piece;
 }				t_piece;
 
-void			map_set(t_map *map, t_piece *piece, char *line, int f);
-void			piece_set(t_map *map, t_piece *piece, char *line, int num, int f);
+void			map_set(t_map *map, t_piece *piece, char *line);
+void			piece_set(t_map *map, t_piece *piece, char *line, int num);
 void			set_size(t_map *map, t_piece *piece, char *line);
 void			set_size_piece(t_map *map, t_piece *piece, char *line);
 void			mallocing_map(t_map *map);
@@ -44,5 +44,6 @@ int				placeable(t_map *map, t_piece *piece);
 int				malloc_place(t_map *map, t_piece *piece);
 int				malloc_place_2(t_map *map, t_piece *piece);
 void			best_pos(t_map *map, t_piece *piece);
+void			freeing(t_map *map, t_piece *piece);
 
 #endif

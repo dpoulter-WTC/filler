@@ -6,13 +6,13 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 11:01:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/11 16:48:43 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 12:36:50 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	piece_set(t_map *map, t_piece *piece, char *line, int num,  int f)
+void	piece_set(t_map *map, t_piece *piece, char *line, int num)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,6 @@ void	mallocing_piece(t_piece *piece)
 		piece->piece[i] = (char *)malloc(sizeof(char) * piece->piece_y + 1);
 	i = piece->piece_x;
 	piece->piece[i] = (char *)malloc(sizeof(char) * 1);
-
 }
 
 void	set_size_piece(t_map *map, t_piece *piece, char *line)
@@ -50,9 +49,9 @@ void	set_size_piece(t_map *map, t_piece *piece, char *line)
 	i = -1;
 	j = 0;
 	digit = (char *)malloc(sizeof(char) * ft_strlen(line));
-	while(!ft_isdigit(line[++i]))
+	while (!ft_isdigit(line[++i]))
 		;
-	while(ft_isdigit(line[++i - 1]))
+	while (ft_isdigit(line[++i - 1]))
 	{
 		digit[j++] = line[i - 1];
 		digit[j] = '\0';
@@ -60,7 +59,7 @@ void	set_size_piece(t_map *map, t_piece *piece, char *line)
 	piece->piece_x = ft_atoi(digit);
 	j = 0;
 	ft_bzero(digit, ft_strlen(line));
-	while(ft_isdigit(line[++i - 1]))
+	while (ft_isdigit(line[++i - 1]))
 		digit[j++] = line[i - 1];
 	piece->piece_y = ft_atoi(digit);
 	mallocing_piece(piece);

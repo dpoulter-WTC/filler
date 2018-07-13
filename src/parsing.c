@@ -6,13 +6,13 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 18:23:33 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/11 16:17:40 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 12:42:55 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	map_set(t_map *map, t_piece *piece, char *line, int f)
+void	map_set(t_map *map, t_piece *piece, char *line)
 {
 	int		i;
 	int		j;
@@ -52,16 +52,16 @@ void	set_size(t_map *map, t_piece *piece, char *line)
 	i = -1;
 	j = 0;
 	digit = (char *)malloc(sizeof(char) * ft_strlen(line));
-	while(!ft_isdigit(line[++i]))
+	while (!ft_isdigit(line[++i]))
 		;
-	while(ft_isdigit(line[++i - 1]))
+	while (ft_isdigit(line[++i - 1]))
 	{
 		digit[j++] = line[i - 1];
 	}
 	map->map_x = ft_atoi(digit);
 	j = 0;
 	ft_bzero(digit, ft_strlen(line));
-	while(ft_isdigit(line[++i - 1]))
+	while (ft_isdigit(line[++i - 1]))
 		digit[j++] = line[i - 1];
 	map->map_y = ft_atoi(digit);
 	mallocing_map(map);
