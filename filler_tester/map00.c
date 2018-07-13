@@ -6,7 +6,7 @@
 /*   By: agiulian <agiulian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 16:24:17 by agiulian          #+#    #+#             */
-/*   Updated: 2018/07/12 22:44:41 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 13:40:54 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	map00p1(t_prm *prm, char player[21])
 	double	percentage;
 
 	i = 0;
-	num = 0;
 	while (i < prm->player_nb)
 	{
 		score = 0;
 		j = 0;
+		num = 0;
 		while (j < prm->nb1)
 		{
 			sprintf(prm->entry, "ruby filler_vm -q -f maps/map00 -p1 \
@@ -83,11 +83,11 @@ void	map00p2(t_prm *prm, char player[21])
 	double	percentage;
 
 	i = 0;
-	num = 0;
 	while (i < prm->player_nb)
 	{
 		score = 0;
 		j = 0;
+		num = 0;
 		while (j < prm->nb2)
 		{
 			sprintf(prm->entry, "ruby filler_vm -q -f maps/map00 -p1 \
