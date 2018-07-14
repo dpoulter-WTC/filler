@@ -6,7 +6,7 @@
 /*   By: agiulian <agiulian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 16:24:17 by agiulian          #+#    #+#             */
-/*   Updated: 2018/07/13 13:40:54 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/13 19:45:58 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ void	map00p2(t_prm *prm, char player[21])
 			prm->fd = open("filler.trace", O_RDONLY);
 			read(prm->fd, prm->buf, 4096);
 			num++;
-			percentage = (double)(((double)num / (double)prm->nb1) * 100);
+			percentage = (double)(((double)num / (double)prm->nb2) * 100);
+			show_status(percentage);
 			if (strstr(prm->buf, player) && !strstr(prm->buf, "Segfault"))
 				score++;
-			show_status(percentage);
 			j++;
 		}
 		print_result(prm->player_lst[i], player, prm->nb2, score);

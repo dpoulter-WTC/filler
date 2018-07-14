@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/13 13:36:54 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/14 10:54:55 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	initiate(t_map *map, t_piece *piece)
 	map->pos_num = 0;
 	map->me = 'a';
 	map->en = 'a';
+	map->me_x = 0;
+	map->me_y = 0;
 }
 
 void	first_time(t_map *map, t_piece *piece)
@@ -70,7 +72,9 @@ void	else_time(t_map *map, t_piece *piece)
 	{
 		ft_gnl(0, &line);
 		if (line[0] == 'P' && line[1] == 'i')
+		{
 			set_size_piece(map, piece, line);
+		}
 		if (ft_isdigit(line[0]) == 1)
 			map_set(map, piece, line);
 		if ((line[0] == '*' || line[0] == '.') && piece->piece_x != 0)
@@ -111,9 +115,11 @@ int		main(void)
 	first_time(map, piece);
 	player(map);
 	malloc_place(map, piece);
-	map->pos_num = 0;
-	while (1)
+			fprintf(stderr, "here");
+			fflush(stderr);
+	while (1 && map->pos_num != 0)
 	{
+		map->pos_num = 0;
 		i = -1;
 		else_time(map, piece);
 		if (malloc_place(map, piece))
@@ -121,7 +127,6 @@ int		main(void)
 			freeing(map, piece);
 			break ;
 		}
-		map->pos_num = 0;
 	}
 	return (0);
 }
