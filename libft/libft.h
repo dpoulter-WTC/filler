@@ -6,7 +6,7 @@
 /*   By: dpoulter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 11:06:49 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/16 12:15:30 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/16 14:07:37 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # endif
 
 # define BUFF_SIZE 34
-
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -98,4 +97,5 @@ char			*ft_strndup(const char *s1, size_t n);
 int				ft_countwords(char const *str, char c);
 int				ft_gnl(const int fd, char **line);
 int				ab(int i);
+
 #endif
