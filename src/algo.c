@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:27:46 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 01:42:31 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/16 12:13:14 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,51 @@ void	place(t_map *map, int mini)
 	ft_putchar_fd('\n', 1);
 }
 
-void	best_pos_bottom(t_map *map, t_piece *piece)
+void	closest_side(t_map *map, t_piece *piece, int side)
 {
-	int y;
-	int x;
 	int i;
 	int min;
 	int mini;
-
 
 	i = -1;
 	mini = 0;
 	min = map->map_x + 1 + map->map_y + 1;
 	while (++i < map->pos_num)
 	{
-		x = map->map_x - 1;
-		while (--x > map->map_x)
+		if(min > ab(side - map->pos[i][0]) + ab(map->me_y - map->pos[i][1]))
 		{
-			y = map->map_y - 1;
-			while (--y > map->map_y)
+			min = ab(side - map->pos[i][0]) + ab(map->me_y - map->pos[i][1]);
+			mini = i;
+		}
+	}
+	place(map, mini);
+}
+
+void	closest(t_map *map, t_piece *piece)
+{
+	int x;
+	int y;
+	int i;
+	int min;
+	int mini;
+
+	i = -1;
+	min = map->map_x + 1 + map->map_y + 1;
+	while (++i < map->pos_num)
+	{
+		x = -1;
+		while (++x < map->map_x)
+		{
+			y = -1;
+			while (++y < map->map_y)
 				if (ft_toupper(map->map[x][y]) == map->en)
-					if (min > abs(x + piece->piece_x - map->pos[i][0]) + abs(y + piece->piece_y - map->pos[i][1]))
+				{
+					if (min > ab(x - map->pos[i][0]) + ab(y - map->pos[i][1]))
 					{
-						min = abs(x + piece->piece_x - map->pos[i][0]) + abs(y + piece->piece_y - map->pos[i][1]);
-						//min = abs(x - map->pos[i][0]) + abs(y - map->pos[i][1]);
+						min = ab(x - map->pos[i][0]) + ab(y - map->pos[i][1]);
 						mini = i;
 					}
+				}
 		}
 	}
 	place(map, mini);
@@ -73,36 +92,30 @@ void	best_pos_bottom(t_map *map, t_piece *piece)
 
 void	best_pos(t_map *map, t_piece *piece)
 {
-	int y;
 	int x;
 	int i;
-	int min;
-	int mini;
+	int bigger;
+	int found;
 
 	i = -1;
-	mini = 0;
-	min = map->map_x + 1 + map->map_y + 1;
-	if (map->map[0][0] != map->en || map->map[0][0] !=map->me)
-		place(map, 0);
-	else
+	found = 0;
+	bigger = 0;
+	if (map->me_x < map->en_x)
 	{
-		while (++i < map->pos_num)
+		x = -1;
+		while (++x < map->map_y)
 		{
-			x = -1;
-			while (++x < map->map_x)
-			{
-				y = -1;
-				while (++y < map->map_y)
-					if (ft_toupper(map->map[x][y]) == map->en)
-					{
-						if (min > abs(x - map->pos[i][0]) + abs(y - map->pos[i][1]))
-						{
-							min = abs(x - map->pos[i][0]) + abs(y - map->pos[i][1]);
-							mini = i;
-						}
-					}
-			}
+			bigger = map->map_x;
+			if (map->map[map->map_x - 1][x] == map->me)
+				found = 1;
+			if (map->map[map->map_x - 2][x] == map->me)
+				found = 1;
+			if (map->map[map->map_x - 3][x] == map->me && map->map_x < 40)
+				found = 1;
 		}
-		place(map, mini);
 	}
+	if (found == 1 || map->map_x < 40)
+		closest(map, piece);
+	else
+		closest_side(map, piece, bigger);
 }

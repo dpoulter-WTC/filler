@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 18:23:33 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 10:42:31 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/14 11:34:55 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	map_set(t_map *map, t_piece *piece, char *line)
 			{
 				map->me_x = row_num;
 				map->me_y = j;
+			}
+		if(map->en_x == 0)
+			if(ft_toupper(line[i]) == map->en)
+			{
+				map->en_x = row_num;
+				map->en_y = j;
 			}
 		map->map[row_num][j + 1] = '\0';
 		i++;

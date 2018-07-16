@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:44:19 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 00:57:10 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/14 11:33:46 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,6 @@ void	calc_end(t_map *map, t_piece *piece, int num)
 			{
 				map->pos[num][2] = num + x;
 				map->pos[num][3] = num + y;
-			}
-		}
-	}
-}
-
-void	checker_of_pos(t_map *map, t_piece *piece)
-{
-	int x;
-	int y;
-	int done;
-
-	x = -1;
-	done = 0;
-	while (++x < map->map_x && done == 0)
-	{
-		y = -1;
-		while (++y < map->map_y && done == 0)
-		{
-			if (map->map[x][y] != '.')
-			{
-				if (map->map[x][y] == map->en)
-					best_pos_bottom(map, piece);
-				else
-				done = 1;
 			}
 		}
 	}

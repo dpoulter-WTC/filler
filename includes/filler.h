@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:12:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 10:47:30 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/14 11:35:16 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ typedef	struct	s_map
 	int			map_x;
 	int			map_y;
 	char		**map;
+	int			player;
 	int			**pos;
 	int			pos_num;
-	int			player;
 	char		me;
 	char		en;
 	int			me_x;
 	int			me_y;
+	int			en_x;
+	int			en_y;
 }				t_map;
 
 typedef	struct	s_piece
@@ -46,7 +48,6 @@ int				placeable(t_map *map, t_piece *piece);
 int				malloc_place(t_map *map, t_piece *piece);
 int				malloc_place_2(t_map *map, t_piece *piece);
 void			best_pos(t_map *map, t_piece *piece);
-void			best_pos_bottom(t_map *map, t_piece *piece);
 void			freeing(t_map *map, t_piece *piece);
 void			calc_end(t_map *map, t_piece *piece, int num);
 

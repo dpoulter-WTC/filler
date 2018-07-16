@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 10:54:55 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/15 12:50:40 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	initiate(t_map *map, t_piece *piece)
 	map->en = 'a';
 	map->me_x = 0;
 	map->me_y = 0;
+	map->en_x = 0;
+	map->en_y = 0;
 }
 
 void	first_time(t_map *map, t_piece *piece)
@@ -41,9 +43,9 @@ void	first_time(t_map *map, t_piece *piece)
 	{
 		ft_gnl(0, &line);
 		if (ft_strcmp(line, "$$$ exec p1 : [players/dpoulter.filler]") == 0)
-			map->player = 1;
+			map->me = 'O';
 		if (ft_strcmp(line, "$$$ exec p2 : [players/dpoulter.filler]") == 0)
-			map->player = 2;
+			map->me = 'X';
 		if (line[0] == 'P' && line[1] == 'l')
 			set_size(map, piece, line);
 		if (ft_isdigit(line[0]) == 1)
@@ -90,14 +92,14 @@ void	else_time(t_map *map, t_piece *piece)
 
 void	player(t_map *map)
 {
-	if (map->player == 1)
+	if (map->me == 'O')
 	{
-		map->me = 'O';
+		map->player = 1;
 		map->en = 'X';
 	}
 	else
 	{
-		map->me = 'X';
+		map->player = 2;
 		map->en = 'O';
 	}
 }
@@ -115,8 +117,6 @@ int		main(void)
 	first_time(map, piece);
 	player(map);
 	malloc_place(map, piece);
-			fprintf(stderr, "here");
-			fflush(stderr);
 	while (1 && map->pos_num != 0)
 	{
 		map->pos_num = 0;
