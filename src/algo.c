@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:27:46 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/16 12:13:14 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/16 12:39:20 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	closest_side(t_map *map, t_piece *piece, int side)
 	min = map->map_x + 1 + map->map_y + 1;
 	while (++i < map->pos_num)
 	{
-		if(min > ab(side - map->pos[i][0]) + ab(map->me_y - map->pos[i][1]))
+		if (min > ab(side - map->pos[i][0]) + ab(map->me_y - map->pos[i][1]))
 		{
 			min = ab(side - map->pos[i][0]) + ab(map->me_y - map->pos[i][1]);
 			mini = i;
@@ -78,13 +78,11 @@ void	closest(t_map *map, t_piece *piece)
 			y = -1;
 			while (++y < map->map_y)
 				if (ft_toupper(map->map[x][y]) == map->en)
-				{
 					if (min > ab(x - map->pos[i][0]) + ab(y - map->pos[i][1]))
 					{
 						min = ab(x - map->pos[i][0]) + ab(y - map->pos[i][1]);
 						mini = i;
 					}
-				}
 		}
 	}
 	place(map, mini);
@@ -94,18 +92,15 @@ void	best_pos(t_map *map, t_piece *piece)
 {
 	int x;
 	int i;
-	int bigger;
 	int found;
 
 	i = -1;
 	found = 0;
-	bigger = 0;
 	if (map->me_x < map->en_x)
 	{
 		x = -1;
 		while (++x < map->map_y)
 		{
-			bigger = map->map_x;
 			if (map->map[map->map_x - 1][x] == map->me)
 				found = 1;
 			if (map->map[map->map_x - 2][x] == map->me)
@@ -117,5 +112,5 @@ void	best_pos(t_map *map, t_piece *piece)
 	if (found == 1 || map->map_x < 40)
 		closest(map, piece);
 	else
-		closest_side(map, piece, bigger);
+		closest_side(map, piece, map->en_x);
 }

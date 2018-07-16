@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/15 12:50:40 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/16 12:39:35 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ void	else_time(t_map *map, t_piece *piece)
 	{
 		ft_gnl(0, &line);
 		if (line[0] == 'P' && line[1] == 'i')
-		{
 			set_size_piece(map, piece, line);
-		}
 		if (ft_isdigit(line[0]) == 1)
 			map_set(map, piece, line);
 		if ((line[0] == '*' || line[0] == '.') && piece->piece_x != 0)

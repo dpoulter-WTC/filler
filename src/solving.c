@@ -6,33 +6,11 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:44:19 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 11:33:46 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/16 12:40:47 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
-
-void	calc_end(t_map *map, t_piece *piece, int num)
-{
-	int x;
-	int y;
-	int done;
-
-	done = 0;
-	x = piece->piece_x;
-	while (--x > 0 && done == 0)
-	{
-		y = piece->piece_y;
-		while (--y > 0 && done == 0)
-		{
-			if (piece->piece[x][y] != '.')
-			{
-				map->pos[num][2] = num + x;
-				map->pos[num][3] = num + y;
-			}
-		}
-	}
-}
 
 int		legal(t_map *map, t_piece *piece, int x, int y)
 {
@@ -97,7 +75,7 @@ int		malloc_place_2(t_map *map, t_piece *piece)
 	i = -1;
 	map->pos = (int **)malloc(sizeof(int *) * map->pos_num);
 	while (++i < map->pos_num)
-		map->pos[i] = (int *)malloc(sizeof(int) * 4);
+		map->pos[i] = (int *)malloc(sizeof(int) * 2);
 	if (placeable(map, piece))
 		return (1);
 	return (0);
@@ -119,7 +97,6 @@ int		placeable(t_map *map, t_piece *piece)
 			{
 				map->pos[num][0] = x;
 				map->pos[num][1] = y;
-				calc_end(map, piece, num);
 				num++;
 			}
 	}
