@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:27:46 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/16 12:39:20 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/20 08:09:35 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	closest_side(t_map *map, t_piece *piece, int side)
 	place(map, mini);
 }
 
-void	closest(t_map *map, t_piece *piece)
+void	closest(t_map *map, t_piece *piece, int l)
 {
 	int x;
 	int y;
@@ -78,9 +78,9 @@ void	closest(t_map *map, t_piece *piece)
 			y = -1;
 			while (++y < map->map_y)
 				if (ft_toupper(map->map[x][y]) == map->en)
-					if (min > ab(x - map->pos[i][0]) + ab(y - map->pos[i][1]))
+					if (min > ab(x - map->pos[i][l]) + ab(y - map->pos[i][l + 1]))
 					{
-						min = ab(x - map->pos[i][0]) + ab(y - map->pos[i][1]);
+						min = ab(x - map->pos[i][l]) + ab(y - map->pos[i][l + 1]);
 						mini = i;
 					}
 		}
@@ -93,24 +93,24 @@ void	best_pos(t_map *map, t_piece *piece)
 	int x;
 	int i;
 	int found;
+	int y;
+	int on_top;
 
+	on_top = -1;
 	i = -1;
 	found = 0;
-	if (map->me_x < map->en_x)
+	x = -1;
+	while (++x < map->map_x && on_top < 0)
 	{
-		x = -1;
-		while (++x < map->map_y)
+		y = -1;
+		while (++y < map->map_y && on_top < 0)
 		{
-			if (map->map[map->map_x - 1][x] == map->me)
-				found = 1;
-			if (map->map[map->map_x - 2][x] == map->me)
-				found = 1;
-			if (map->map[map->map_x - 3][x] == map->me && map->map_x < 40)
-				found = 1;
+			if (ft_toupper(map->map[x][y]) == map->me)
+				on_top = 0;
+			if (ft_toupper(map->map[x][y]) == map->en)
+				on_top = 2;
 		}
 	}
-	if (found == 1 || map->map_x < 40)
-		closest(map, piece);
-	else
-		closest_side(map, piece, map->en_x);
+	closest(map, piece, on_top);
+	free(map->pos);
 }

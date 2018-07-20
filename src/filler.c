@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/16 12:39:35 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/19 21:14:17 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,9 @@ int		main(void)
 			freeing(map, piece);
 			break ;
 		}
+		free_piece(piece);
 	}
+	free(map);
+	free(piece);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 11:01:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/13 12:36:50 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/19 21:13:03 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,17 @@ void	set_size_piece(t_map *map, t_piece *piece, char *line)
 	piece->piece_y = ft_atoi(digit);
 	mallocing_piece(piece);
 	free(digit);
+}
+
+void	free_piece(t_piece *piece)
+{
+	int i;
+
+	i = 0;
+	while (i < piece->piece_x)
+	{
+		free(piece->piece[i]);
+		i++;
+	}
+	free(piece->piece);
 }

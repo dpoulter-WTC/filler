@@ -6,25 +6,11 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 18:23:33 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/16 14:04:51 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/16 12:36:06 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
-
-void	set(t_map *map, int j, int row, int me)
-{
-	if (me == 1)
-	{
-		map->me_x = row;
-		map->me_y = j;
-	}
-	else
-	{
-		map->en_x = row;
-		map->en_y = j;
-	}
-}
 
 void	map_set(t_map *map, t_piece *piece, char *line)
 {
@@ -43,10 +29,16 @@ void	map_set(t_map *map, t_piece *piece, char *line)
 		map->map[row_num][++j] = line[i];
 		if (map->me_x == 0)
 			if (ft_toupper(line[i]) == map->me)
-				set(map, j, row_num, 1);
+			{
+				map->me_x = row_num;
+				map->me_y = j;
+			}
 		if (map->en_x == 0)
 			if (ft_toupper(line[i]) == map->en)
-				set(map, j, row_num, 1);
+			{
+				map->en_x = row_num;
+				map->en_y = j;
+			}
 		map->map[row_num][j + 1] = '\0';
 		i++;
 	}

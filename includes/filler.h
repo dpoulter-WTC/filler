@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:12:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/14 11:35:16 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/19 21:14:08 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int				malloc_place_2(t_map *map, t_piece *piece);
 void			best_pos(t_map *map, t_piece *piece);
 void			freeing(t_map *map, t_piece *piece);
 void			calc_end(t_map *map, t_piece *piece, int num);
+void			free_piece(t_piece *piece);
 
 #endif
