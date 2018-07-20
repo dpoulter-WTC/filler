@@ -6,7 +6,7 @@
 #    By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 10:08:35 by dpoulter          #+#    #+#              #
-#    Updated: 2018/07/12 12:40:56 by dpoulter         ###   ########.fr        #
+#    Updated: 2018/07/20 13:00:47 by dpoulter         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS := src/filler.c \
 		src/parsing_piece.c \
 		src/solving.c \
 		src/algo.c \
+		src/vis.c \
 
 OBJ = $(SRCS:.c=.o)
 

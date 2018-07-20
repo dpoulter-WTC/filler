@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/19 21:14:17 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/20 13:36:23 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int		main(void)
 		map->pos_num = 0;
 		i = -1;
 		else_time(map, piece);
+		vis(map);
 		if (malloc_place(map, piece))
 		{
 			freeing(map, piece);
