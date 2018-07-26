@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 18:23:33 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/16 12:36:06 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/21 18:30:54 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ void	mallocing_map(t_map *map)
 
 	i = -1;
 	map->map = (char **)malloc(sizeof(char *) * map->map_x);
+	map->map_old = (char **)malloc(sizeof(char *) * map->map_x);
 	while (++i < map->map_x)
+	{
 		map->map[i] = (char *)malloc(sizeof(char) * map->map_y + 1);
+		map->map_old[i] = (char *)malloc(sizeof(char) * map->map_y + 1);
+	}
 }
 
 void	set_size(t_map *map, t_piece *piece, char *line)

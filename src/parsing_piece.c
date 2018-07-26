@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 11:01:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/19 21:13:03 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/21 18:29:42 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_size_piece(t_map *map, t_piece *piece, char *line)
 	free(digit);
 }
 
-void	free_piece(t_piece *piece)
+void	free_piece(t_map *map, t_piece *piece)
 {
 	int i;
 
@@ -76,5 +76,8 @@ void	free_piece(t_piece *piece)
 		free(piece->piece[i]);
 		i++;
 	}
+	i = -1;
+	while (++i < map->map_x)
+		map->map_old[i] = ft_strdup(map->map[i]);
 	free(piece->piece);
 }
