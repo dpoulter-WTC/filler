@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 18:23:33 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/21 18:30:54 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/26 11:44:22 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	map_set(t_map *map, t_piece *piece, char *line)
 		map->map[row_num][j + 1] = '\0';
 		i++;
 	}
-	j = -1;
 }
 
 void	mallocing_map(t_map *map)
