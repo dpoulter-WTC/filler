@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:27:46 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/26 11:03:46 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/30 14:35:42 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	closest(t_map *map, t_piece *piece, int l)
 	place(map, mini);
 }
 
-void	best_pos(t_map *map, t_piece *piece)
+void	best_pos(t_map *m, t_piece *piece)
 {
 	int x;
 	int i;
@@ -111,37 +111,33 @@ void	best_pos(t_map *map, t_piece *piece)
 	i = -1;
 	x = -1;
 	found = 0;
-	map->placed = 1;
-	while (++x < map->map_x)
+	m->placed = 1;
+	while (++x < m->map_x)
 	{
 		y = -1;
-		while (++y < map->map_y)
+		while (++y < m->map_y)
 		{
-			if (ft_toupper(map->map[x][y]) == map->me && on_top == -1)
+			if (ft_toupper(m->map[x][y]) == m->me && on_top == -1)
 				on_top = 0;
-			if (ft_toupper(map->map[x][y]) == map->en && on_top == -1 && map->map_x > 40)
+			if (ft_toupper(m->map[x][y]) == m->en && on_top == -1 && m->map_x > 40)
 				on_top = 2;
-			if (map->map[0][y] == map->me || map->map[1][y] == map->me)
-				found = 1;
-			if (map->map[x][0] == map->me || map->map[x][1] == map->me)
+			if (m->map[x][0] == m->me || m->map[x][1] == m->me)
 				found = 2;
-			if (map->map[0][0] == map->me || map->map[1][1] == map->me)
-				found = 1;
 		}
 	}
-	if (map->map_x < 40 && map->player == 2 && found == 0 && map->map_x > 20)
-		closest_side(map, piece, map->map_y);
+	if (m->map_x < 40 && m->player == 2 && found == 0 && m->map_x > 20)
+		closest_side(m, piece, m->map_y);
 	else if (found == 2)
 	{
-		map->placed = -1;
-		closest_side(map, piece, 0);
+		m->placed = -1;
+		closest_side(m, piece, 0);
 	}
-	else if (map->map_x < 20 && map->player == 2 && found == 0)
+	else if (m->map_x < 20 && m->player == 2 && found == 0)
 	{
-		map->placed = -1;
-		closest_side(map, piece, map->map_y);
+		m->placed = -1;
+		closest_side(m, piece, m->map_y);
 	}
 	else
-		closest(map, piece, on_top);
-	free(map->pos);
+		closest(m, piece, on_top);
+	free(m->pos);
 }

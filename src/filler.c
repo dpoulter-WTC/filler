@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/26 11:46:59 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/30 14:15:49 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	player(t_map *map)
 		map->player = 2;
 		map->en = 'O';
 	}
-	ft_putstr_fd("\e[1;1H\e[5J", 2);
+	//ft_putstr_fd("\e[1;1H\e[5J", 2);
 }
 
 int		main(void)
@@ -128,7 +128,7 @@ int		main(void)
 			freeing(map, piece);
 			break ;
 		}
-		vis(map);
+		//vis(map);
 		free_piece(map, piece);
 	}
 	free(map);
