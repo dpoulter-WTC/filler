@@ -6,41 +6,37 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 18:23:33 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/26 11:44:22 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 14:46:17 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 
-void	map_set(t_map *map, t_piece *piece, char *line)
+void	map_set(t_map *m, t_piece *piece, char *ln)
 {
 	int		i;
 	int		j;
 	int		row_num;
 
 	i = 0;
-	while (line[i] != ' ')
+	while (ln[i] != ' ')
 		i++;
-	i++;
-	row_num = ft_atoi(line);
+	row_num = ft_atoi(ln);
 	j = -1;
-	while (line[i])
+	while (ln[++i])
 	{
-		map->map[row_num][++j] = line[i];
-		if (map->me_x == 0)
-			if (ft_toupper(line[i]) == map->me)
-			{
-				map->me_x = row_num;
-				map->me_y = j;
-			}
-		if (map->en_x == 0)
-			if (ft_toupper(line[i]) == map->en)
-			{
-				map->en_x = row_num;
-				map->en_y = j;
-			}
-		map->map[row_num][j + 1] = '\0';
-		i++;
+		m->map[row_num][++j] = ln[i];
+		if (m->me_x == 0 && ft_toupper(ln[i] == m->me))
+		{
+			m->me_x = row_num;
+			m->me_y = j;
+		}
+		if (m->en_x == 0 && ft_toupper(ln[i]) == m->en)
+		{
+			m->en_x = row_num;
+			m->en_y = j;
+		}
+		m->map[row_num][j + 1] = '\0';
 	}
 }
 

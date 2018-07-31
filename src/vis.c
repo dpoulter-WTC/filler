@@ -6,22 +6,18 @@
 /*   By: dpoulter <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/20 12:55:57 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/24 13:54:31 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 14:57:10 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/filler.h"
 #include <sys/ioctl.h>
 
-void	f(char *s, t_map *map, int size)
+void	print(t_map *map, char *s)
 {
 	int x;
-	int y;
 
 	x = -1;
-	y = 0;
-	while (++y < (size - map->map_y) / 2)
-		ft_putchar_fd(' ', 2);
 	while (s[++x])
 	{
 		if (map->map_y > 200)
@@ -44,14 +40,24 @@ void	f(char *s, t_map *map, int size)
 	}
 }
 
+void	f(char *s, t_map *map, int size)
+{
+	int y;
+
+	y = 0;
+	while (++y < (size - map->map_y) / 2)
+		ft_putchar_fd(' ', 2);
+	print(map, s);
+}
+
 void	vis(t_map *map)
 {
-	int i;
-	struct ttysize ts;
-	int size;
+	int				i;
+	struct ttysize	ts;
+	int				size;
 
 	i = -1;
-  	ioctl(2 , TIOCGWINSZ, &ts);
+	ioctl(2, TIOCGWINSZ, &ts);
 	ft_putstr_fd("\e[1;1H", 2);
 	size = map->map_x;
 	if (map->map_x > 40)

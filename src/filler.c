@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:09:00 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/30 14:15:49 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 14:47:26 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ int		main(void)
 	t_map	*map;
 	t_piece	*piece;
 	char	*line;
-	int		i;
 
 	map = (t_map *)malloc(sizeof(*map));
 	piece = (t_piece *)malloc(sizeof(*piece));
@@ -121,7 +120,6 @@ int		main(void)
 	while (1 && map->pos_num != 0)
 	{
 		map->pos_num = 0;
-		i = -1;
 		else_time(map, piece);
 		if (malloc_place(map, piece))
 		{

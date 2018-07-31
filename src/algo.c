@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:27:46 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/30 14:35:42 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 13:38:10 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	place(t_map *map, int mini)
 	ft_putchar_fd('\n', 1);
 }
 
-void	closest_side(t_map *map, t_piece *piece, int j)
+void	closest_side(t_map *m, t_piece *piece, int j)
 {
 	int i;
 	int min;
@@ -48,27 +48,27 @@ void	closest_side(t_map *map, t_piece *piece, int j)
 
 	i = -1;
 	mini = 0;
-	min = map->map_x + 1 + map->map_y + 1;
-	while (++i < map->pos_num)
+	min = m->map_x + 1 + m->map_y + 1;
+	while (++i < m->pos_num)
 	{
-		if (map->placed == -1)
+		if (m->placed == -1)
 		{
-		if (min > ab(0 - map->pos[i][2]) + ab(j - map->pos[i][3]))
+		if (min > ab(0 - m->pos[i][2]) + ab(j - m->pos[i][3]))
 		{
-			min = ab(0 - map->pos[i][2]) + ab(j - map->pos[i][3]);
+			min = ab(0 - m->pos[i][2]) + ab(j - m->pos[i][3]);
 			mini = i;
 		}
 		}else
 		{
-		if (min > ab(map->map_x + 2 - map->pos[i][2]) + ab(0 - map->pos[i][3]))
+		if (min > ab(m->map_x + 2 - m->pos[i][2]) + ab(0 - m->pos[i][3]))
 		{
-			min = ab(map->map_x + 2 - map->pos[i][2]) + ab(0 - map->pos[i][3]);
+			min = ab(m->map_x + 2 - m->pos[i][2]) + ab(0 - m->pos[i][3]);
 			mini = i;
 		}
 		}
 	}
-	place(map, mini);
-	map->placed *= -1;
+	place(m, mini);
+	m->placed *= -1;
 }
 
 void	closest(t_map *map, t_piece *piece, int l)
@@ -107,7 +107,7 @@ void	best_pos(t_map *m, t_piece *piece)
 	int on_top;
 	int	found;
 
-	on_top = -1;
+	on_top = 0;
 	i = -1;
 	x = -1;
 	found = 0;
@@ -117,17 +117,17 @@ void	best_pos(t_map *m, t_piece *piece)
 		y = -1;
 		while (++y < m->map_y)
 		{
-			if (ft_toupper(m->map[x][y]) == m->me && on_top == -1)
-				on_top = 0;
-			if (ft_toupper(m->map[x][y]) == m->en && on_top == -1 && m->map_x > 40)
+			if (ft_toupper(m->map[x][y]) == m->en && on_top == 0 && m->map_x > 40)
 				on_top = 2;
 			if (m->map[x][0] == m->me || m->map[x][1] == m->me)
 				found = 2;
+			if (m->map[0][y] == m->me || m->map[1][y] == m->me)
+				found = 1;
 		}
 	}
 	if (m->map_x < 40 && m->player == 2 && found == 0 && m->map_x > 20)
 		closest_side(m, piece, m->map_y);
-	else if (found == 2)
+	else if (found == 2 && m->player == 2)
 	{
 		m->placed = -1;
 		closest_side(m, piece, 0);
