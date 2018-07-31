@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 11:44:19 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/19 19:37:58 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 23:02:44 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,16 @@ int		malloc_place_2(t_map *map, t_piece *piece)
 	map->pos = (int **)malloc(sizeof(int *) * map->pos_num);
 	while (++i < map->pos_num)
 		map->pos[i] = (int *)malloc(sizeof(int) * 4);
-	if (placeable(map, piece))
+	if (placeable(map, piece, -1))
 		return (1);
 	return (0);
 }
 
-int		placeable(t_map *map, t_piece *piece)
+int		placeable(t_map *map, t_piece *piece, int x)
 {
-	int x;
 	int y;
 	int	num;
 
-	x = -1;
 	num = 0;
 	while (++x < map->map_x)
 	{
@@ -107,7 +105,6 @@ int		placeable(t_map *map, t_piece *piece)
 		ft_putendl_fd("0 0", 1);
 		return (1);
 	}
-	else
-		best_pos(map, piece);
+	best_pos(map, piece, -1);
 	return (0);
 }

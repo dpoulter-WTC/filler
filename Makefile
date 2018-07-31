@@ -6,11 +6,11 @@
 #    By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/08 10:08:35 by dpoulter          #+#    #+#              #
-#    Updated: 2018/07/20 13:00:47 by dpoulter         ###   ########.fr        #
+#    Updated: 2018/08/01 00:50:56 by dpoulter         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = resources/players/dpoulter.filler
+NAME = dpoulter.filler
 FLAGS = -Wall -Werror -Wextra -I./includes
 
 SRCS := src/filler.c \
@@ -19,6 +19,7 @@ SRCS := src/filler.c \
 		src/solving.c \
 		src/algo.c \
 		src/vis.c \
+		src/freeing.c \
 
 OBJ = $(SRCS:.c=.o)
 

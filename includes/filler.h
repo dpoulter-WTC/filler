@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 19:12:23 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/23 20:21:56 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 22:56:38 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void			set_size(t_map *map, t_piece *piece, char *line);
 void			set_size_piece(t_map *map, t_piece *piece, char *line);
 void			mallocing_map(t_map *map);
 void			mallocing_piece(t_piece *piece);
-int				placeable(t_map *map, t_piece *piece);
+int				placeable(t_map *map, t_piece *piece, int x);
 int				malloc_place(t_map *map, t_piece *piece);
 int				malloc_place_2(t_map *map, t_piece *piece);
-void			best_pos(t_map *map, t_piece *piece);
+void			best_pos(t_map *map, t_piece *piece, int x);
 void			freeing(t_map *map, t_piece *piece);
 void			calc_end(t_map *map, t_piece *piece, int num);
 void			free_piece(t_map *map, t_piece *piece);
