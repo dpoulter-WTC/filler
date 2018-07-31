@@ -6,7 +6,7 @@
 /*   By: dpoulter <daniel@poulter.co.za>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 12:27:46 by dpoulter          #+#    #+#             */
-/*   Updated: 2018/07/31 13:38:10 by dpoulter         ###   ########.fr       */
+/*   Updated: 2018/07/31 17:26:57 by dpoulter         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	best_pos(t_map *m, t_piece *piece)
 		while (++y < m->map_y)
 		{
 			if (ft_toupper(m->map[x][y]) == m->en && on_top == 0 && m->map_x > 40)
+		m->placed = -1;
 				on_top = 2;
 			if (m->map[x][0] == m->me || m->map[x][1] == m->me)
 				found = 2;
@@ -126,10 +127,12 @@ void	best_pos(t_map *m, t_piece *piece)
 		}
 	}
 	if (m->map_x < 40 && m->player == 2 && found == 0 && m->map_x > 20)
-		closest_side(m, piece, m->map_y);
-	else if (found == 2 && m->player == 2)
 	{
 		m->placed = -1;
+		closest_side(m, piece, 0);
+	}
+	else if (found == 2 && m->player == 2)
+	{
 		closest_side(m, piece, 0);
 	}
 	else if (m->map_x < 20 && m->player == 2 && found == 0)
